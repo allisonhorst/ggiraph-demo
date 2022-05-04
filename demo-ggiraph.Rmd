@@ -1,0 +1,35 @@
+---
+title: "demo_ggiraph"
+author: "Allison Horst"
+date: '2022-05-03'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(ggiraph)
+library(palmerpenguins)
+library(tidyverse)
+```
+
+First, let's make a basic `ggplot` scatterplot: 
+```{r}
+ggplot(data = penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
+  geom_point(aes(color = species)) +
+  theme_minimal()
+```
+
+Now, interactive:
+```{r}
+p <- ggplot(data = penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
+  geom_point_interactive(aes(color = species)) +
+  theme_minimal()
+```
+
+```{r}
+girafe(ggobj = p)
+```
+
